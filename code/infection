@@ -30,11 +30,11 @@
     summon I 20
 
     //#Insect 1
-    @e[type=ArmorStand,name=main,I] @a wool 5 ~ 0 ~ @P infection + 20
+    @e[type=ArmorStand,name=main,I] @a wool 5 ~ 0 ~ @p infection + 20
 
     //#Insect 2
     testfor @e[type=ArmorStand,name=main,I2]
     CONSTART
-        @e[type=ArmorStand,name=main,I2] @a wool 5 ~ 0 ~ @P infection + 40
+        @e[type=ArmorStand,name=main,I2] @a wool 5 ~ 0 ~ @p infection + 40
         @e[type=ArmorStand,name=main,I2] @a wool 5 ~ 0 ~ @p immunity - 10
     CONEND
