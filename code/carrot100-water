@@ -11,3 +11,7 @@ DEFINE C100 carrot>100<200
 	@a[C100] carrot = 0
 	
 	UNDIFINE C100
+
+:water DELAY 16 16 0
+    summon W 20
+    @a water + 1
