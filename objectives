@@ -1,0 +1,10 @@
+immunity 면역력 //감염수치가 면역력을 넘게되면 감염
+infection 감염수치
+infect 감염도 //플레이어에게 주기적으로 들어오는 감염수치
+water 갈증
+damage 피해감지
+carrot 당근낚시대 사용감지
+
+RI (Region Infection) 지역감염
+RL (Region Level) 지역감염레벨
+RIL (Region Infection Limit) 지역감염한계치
