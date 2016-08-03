@@ -18,13 +18,19 @@
 
     //#Air 1
     @e[type=ArmorStand,name=main,A] @a infection + 3
-
+	CONSTART
+		@e[type=ArmorStand,name=main,BR,BR2] infection - 1
+CONEND
+	
     //#Air 2
     testfor @e[type=ArmorStand,name=main,A2]
     CONSTART
         @a infection + 6
         @a immunity - 3
-    CONEND
+		@e[type=ArmorStand,name=main,BR] infection - 1
+		@e[type=ArmorStand,name=main,BR2] infection - 2
+		@e[type=ArmorStand,name=main,BR2] immunity + 1
+CONEND
 
 :I DELAY 16 2 0
     summon I 20
