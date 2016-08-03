@@ -8,7 +8,7 @@
     @e[type=ArmorStand,name=main,B2] testfor @a[damage>=1]
     CONSTART
         @a[damage>=1] @a[r=10] infection + 20 
-        immunity - 5
+        @a[damage>=1] immunity - 5
     CONEND
     @a[damage>=1] damage = 0
 
