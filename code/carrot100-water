@@ -4,7 +4,15 @@ DEFINE C100 carrot>100<200
 	@a[carrot>=1]  carrot = 100 {SelectedItem:{id:"minecraft:carrot_on_a_stick",Damage:1s}}
 	@a[C100] water = 0
 	@e[type=ArmorStand,W] @a[C100] infection + 300 {SelectedItem:{id:"minecraft:carrot_on_a_stick",Damage:1s,tag:{display:{Name:"Unknown water"}}}}
+	CONSTART
+		@e[type=ArmorStand,BR,BR2] @a[C100] infection - 100 {SelectedItem:{id:"minecraft:carrot_on_a_stick",Damage:1s,tag:{display:{Name:"Unknown water"}}}}
+	CONEND
 	@e[type=ArmorStand,W2] @a[C100] infection + 600 {SelectedItem:{id:"minecraft:carrot_on_a_stick",Damage:1s,tag:{display:{Name:"Unknown water"}}}}
+	CONSTART
+		@e[type=ArmorStand,BR] @a[C100] infection - 100 {SelectedItem:{id:"minecraft:carrot_on_a_stick",Damage:1s,tag:{display:{Name:"Unknown water"}}}}
+		@e[type=ArmorStand,BR2] @a[C100] infection - 200 {SelectedItem:{id:"minecraft:carrot_on_a_stick",Damage:1s,tag:{display:{Name:"Unknown water"}}}}
+		@e[type=ArmorStand,BR2] @a[C100] immunity + 100 {SelectedItem:{id:"minecraft:carrot_on_a_stick",Damage:1s,tag:{display:{Name:"Unknown water"}}}}
+	CONEND
 	@e[type=ArmorStand,W2] @a[C100] immunity - 300 {SelectedItem:{id:"minecraft:carrot_on_a_stick",Damage:1s,tag:{display:{Name:"Unknown water"}}}}
 	clear @a[C100] minecraft:carrot_on_a_stick 1 1 {display:{Name:"Unknown water"}}
 	clear @a[C100] minecraft:carrot_on_a_stick 1 1 {display:{Name:"Purified water"}}
@@ -14,4 +22,4 @@ DEFINE C100 carrot>100<200
 
 :water DELAY 16 16 0
     summon W 20
-    @a water + 1
+@a water + 1
