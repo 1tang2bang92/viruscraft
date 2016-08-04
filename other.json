@@ -1,0 +1,147 @@
+{
+    "pools": [
+        {
+            "rolls": {
+                "min": 0,
+                "max": 4
+            },
+            "entries": [
+                {
+                    "type": "item",
+                    "weight": 4,
+                    "name": "minecraft:carrot_on_a_stick",
+                    "functions": [
+                        {
+                            "function": "set_damage",
+                            "damage": 0.96
+                        },
+                        {
+                            "function": "set_nbt",
+                            "tag": "{display:{Name:\"Empty PET bottle\"},Unbreakable:1,HideFlags:4}"
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "weight": 5,
+                    "name": "minecraft:carrot_on_a_stick",
+                    "functions": [
+                        {
+                            "function": "set_damage",
+                            "damage": 0.9
+                        },
+                        {
+                            "function": "set_nbt",
+                            "tag": "{display:{Name:\"Purified water\"},HideFlags:4,Unbreakable:1}"
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "weight": 6,
+                    "name": "minecraft:carrot_on_a_stick",
+                    "functions": [
+                        {
+                            "function": "set_damage",
+                            "damage": 0.9
+                        },
+                        {
+                            "function": "set_nbt",
+                            "tag": "{display:{Name:\"Unknown water\"},HideFlags:4,Unbreakable:1}"
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "weight": 3,
+                    "name": "minecraft:carrot_on_a_stick",
+                    "functions": [
+                        {
+                            "function": "set_damage",
+                            "damage": 0.86
+                        },
+                        {
+                            "function": "set_nbt",
+                            "tag": "{display:{Name:\"Antibiotic\"},HideFlags:4,Unbreakable:1}"
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "weight": 8,
+                    "name": "minecraft:carrot_on_a_stick",
+                    "functions": [
+                        {
+                            "function": "set_damage",
+                            "damage": 0.8
+                        },
+                        {
+                            "function": "set_nbt",
+                            "tag": "{display:{Name:\"Roll bandage\"},HideFlags:4,Unbreakable:1}"
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "weight": 2,
+                    "name": "minecraft:carrot_on_a_stick",
+                    "functions": [
+                        {
+                            "function": "set_damage",
+                            "damage": 0.78
+                        },
+                        {
+                            "function": "set_nbt",
+                            "tag": "{display:{Name:\"Empty syringe\"},HideFlags:4,Unbreakable:1}"
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "weight": 1,
+                    "name": "minecraft:carrot_on_a_stick",
+                    "functions": [
+                        {
+                            "function": "set_damage",
+                            "damage": 0.76
+                        },
+                        {
+                            "function": "set_nbt",
+                            "tag": "{display:{Name:\"Vaccien syringe\"},HideFlags:4,Unbreakable:1}"
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "weight": 1,
+                    "name": "minecraft:carrot_on_a_stick",
+                    "functions": [
+                        {
+                            "function": "set_damage",
+                            "damage": 0.7
+                        },
+                        {
+                            "function": "set_nbt",
+                            "tag": "{display:{Name:\"Virus syringe\"},HideFlags:4,Unbreakable:1}"
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "weight": 4,
+                    "name": "minecraft:carrot_on_a_stick",
+                    "functions": [
+                        {
+                            "function": "set_damage",
+                            "damage": 0.68
+                        },
+                        {
+                            "function": "set_nbt",
+                            "tag": "{display:{Name:\"Purifier\"},HideFlags:4,Unbreakable:1}"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
