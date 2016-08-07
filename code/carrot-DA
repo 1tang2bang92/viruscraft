@@ -1,0 +1,7 @@
+:carrot100 CLOCK 16 16 0
+	@a[carrot>=1] infection - 8000 {SelectedItem:{id:"minecraft:carrot_on_a_stick",Damage:3s}}
+	CONSTART
+	@a[carrot>=1] immunity + 250 {SelectedItem:{id:"minecraft:carrot_on_a_stick",Damage:3s}}
+	clear @a[carrot>=1] minecraft:carrot_on_a_stick {SelectedItem:{id:"minecraft:carrot_on_a_stick",Damage:3s}}
+	CONEND
+	@a[carrot>=1] carrot = 0
