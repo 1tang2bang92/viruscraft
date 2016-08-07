@@ -15,7 +15,7 @@ DEFINE #Main @e[type=ArmorStand,name=main,|0|]
     CONEND
 
     //#Skin Resistance 1
-    #Main(B) @e[c=1,SR] @e[damage>=1] infection - 5
+    #Main(B) @e[c=1,SR,SR2] @e[damage>=1] infection - 5
 
     //#Skin Resistance 2
      #Main(B2) testfor @e[c=1,SR2]
