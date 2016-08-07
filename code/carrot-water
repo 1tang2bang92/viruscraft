@@ -1,0 +1,25 @@
+DEFINE #Item {SelectedItem:{id:"minecraft:carrot_on_a_stick",Damage:|1|s,tag:{display:{Name:"|0|"}}}}
+DEFINE #Main @e[type=ArmorStand,name=main,|0|]
+
+:carrot100 CLOCK 16 16 0
+	@a[carrot>=1] water = 0  #Item(1;Unknown water)
+	#Main(W) @a infection + 300 #Item(1;Unknown water)
+	CONSTART
+		#Main(BR) @a infection - 100 #Item(1;Unknown water)
+		#Main(BR2) @a infection - 100 #Item(1;Unknown water)
+	CONEND
+	#Main(W2) @a infection + 600 #Item(1;Unknown water)
+	#Main(W2) @a immunity - 300 #Item(1;Unknown water)
+	CONSTART
+		#Main(BR2) @a infection - 200 #Item(1;Unknown water)
+		#Main(BR2) @a immunity + 100 #Item(1;Unknown water)
+	CONEND
+	scoreboard players tag add @a[carrot>=1] Unknown #Main(1;Unknown water)
+	CONSTART
+		@a[Unknown] clear @p minecraftcarrot_on_a_stick 1 1 #Main(1;Unknown water)
+	CONEND
+	scoreboard players tag add @a[carrot>=1] Purified #Main(1;Purified water)
+	CONSTART
+		@a[purified] clear @p minecraftcarrot_on_a_stick 1 1 #Main(1;purified water)
+	CONEND
+	@a[carrot>=1] carrot = 0
