@@ -74,3 +74,19 @@ DEFINE #Main @e[type=ArmorStand,name=main,|0|]
 
 	@e[type=ArmorStand,IM] @a immunity + 1
 	@e[type=ArmorStand,PA] @a infection - 2
+
+:SpawnControler CLOCK 16 2 0
+
+    testfor @a[!FirstTime]
+    CONSTART
+        tp @a[!FirstTime] @e[name=Spawn,type=ArmorStand]
+        @a[!FirstTime] rejoin = 1
+        scoreboard players tag @a[!FirstTime] add FirstTime
+    CONEND
+    testfor @a[rejoin>0]
+    CONSTART
+        @a[rejoin>0] tellraw @a ["",{"selector":"@p","color":"red","bold":true},{"text":" join the game","color":"dark_gray","bold":true}]
+        @a[rejoin>0] title @p subtitle ["",{"selector":"@p","color":"red"}]
+        @a[rejoin>0] title @p title ["",{"text":"Welcome","color":"gold","bold":true}]
+        @a[rejoin>0] rejoin = 0
+    CONEND
