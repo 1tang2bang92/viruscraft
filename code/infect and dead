@@ -1,0 +1,10 @@
+:infect DELAY 16 2 0
+    summon I 20
+
+@a[tag=Infector] infect + 1
+	LOOP 9500 7000 - 250
+		@a[score_immunity_|0|] immunity - 1
+	END
+	
+kill @a[score_infect_min=300]
+@a[score_infect_min=300] infect = -1
