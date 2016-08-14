@@ -1,5 +1,0 @@
-:IM-PA DELAY 16 2 0
-summon I 20
-
-@e[type=ArmorStand,IM] @a immunity + 1
-@e[type=ArmorStand,PA] @a infection - 2
