@@ -16,16 +16,16 @@ DEFINE #Main @e[type=ArmorStand,name=main,|0|]
 	CONEND
 	scoreboard players tag add @a[carrot>=1] Unknown #Main(1;Unknown water)
 	CONSTART
-		@a[Unknown] clear @p minecraftcarrot_on_a_stick 1 1 #Main(1;Unknown water)
+		@a[Unknown] clear @p minecraftcarrot_on_a_stick 1 1 #Item(1;Unknown water)
 	CONEND
-	scoreboard players tag add @a[carrot>=1] Purified #Main(1;Purified water)
+	scoreboard players tag add @a[carrot>=1] Purified #Item(1;Purified water)
 	CONSTART
-		@a[purified] clear @p minecraftcarrot_on_a_stick 1 1 #Main(1;purified water)
+		@a[purified] clear @p minecraftcarrot_on_a_stick 1 1 #Item(1;purified water)
 	CONEND
 	@a[carrot>=1] carrot = 0
 	
 	
-:carrot2 PULSE 16 2 0
+:carrot2 CLOCK 16 2 0
     testfor @a[carrot>=1] #Item(2;InfluVac)
     CONSTART
 
@@ -35,7 +35,7 @@ DEFINE #Main @e[type=ArmorStand,name=main,|0|]
         //# else
         @a[immunity<=5000,carrot>=1] infection + 200 #Item(2;InfluVac)
     CONEND
-@a[carrot>=1] carrot = 0
+    @a[carrot>=1] carrot = 0
 
 
 :carrot3 CLOCK 16 16 0
