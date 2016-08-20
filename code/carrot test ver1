@@ -17,11 +17,11 @@ DEFINE #OItem {display:{Name:"|0|"}}
 	CONEND
 	scoreboard players tag @a[carrot>=1] add Unknown #Item(1;Unknown water)
 	CONSTART
-		@a[Unknown] clear @p minecraftcarrot_on_a_stick 1 1  #OItem(Unknown water)
+		@a[Unknown] clear @p carrot_on_a_stick 1 1  #OItem(Unknown water)
 	CONEND
 	scoreboard players tag @a[carrot>=1] add Purified #Item(1;Purified water)
 	CONSTART
-		@a[purified] clear @p minecraftcarrot_on_a_stick 1 1 #OItem(Purified water)
+		@a[Purified] clear @p carrot_on_a_stick 1 1 #OItem(Purified water)
 	CONEND
 	
 	
