@@ -1,92 +1,78 @@
-//#infection
-
-DEFINE #Main @e[type=ArmorStand,name=main,|0|]
-
-:blood CLOCK 16 2 0
-
-    //#blood 1
-   #Main(B) @a[damage>=1] @a[r=5] infection + 10
-
-    //#blood 2
-    #Main(B2) testfor @a[damage>=1]
-    CONSTART
-        @a[damage>=1] @a[r=10] infection + 20 
-        immunity - 5
-    CONEND
-
-    //#Skin Resistance 1
-    #Main(B) @e[c=1,SR] @e[damage>=1] infection - 5
-
-    //#Skin Resistance 2
-     #Main(B2) testfor @e[c=1,SR2]
-     CONSTART
-        @e[damage>=1] infection - 10
-        @e[damage>=1] immunity + 2
-    CONEND
-
-    @a[damage>=1] damage = 0
-
-
-:air DELAY 16 2 0
-    summon air 20
-
-    //#Air 1
-    #Main(A) @a infection + 3
-
-    //#Air 2
-    testfor #Main(A2)
-    CONSTART
-        @a infection + 6
-        @a immunity - 3
-    CONEND
+DEFINE #Main @e[type=armor_stand,name=main,|0|]
 
 :insect DELAY 16 2 0
-    summon insect 20
-
-    //#Insect 1
-    #Main(I) @a wool 5 ~ 0 ~ @p infection + 20
-
-    //#Insect 2
-    testfor #Main(I2)
-    CONSTART
-        #Main(I2) @a wool 5 ~ 0 ~ @p infection + 40
-        #Main(I2) @a wool 5 ~ 0 ~ @p immunity - 10
-    CONEND
+	summon I 20
+		testfor #Main(I)
+		CONSTART
+			#Main(I) @a wool 5 ~ 0 ~ @p infection + 20
+			#Main(SR) @a wool 5 ~ 0 ~ @p  infection - 5
+			#Main(SR2) @a wool 5 ~ 0 ~ @p  infection - 5
+		CONEND
 	
+		testfor #Main(I2)
+		CONSTART
+			#Main(I2) @a wool 5 ~ 0 ~ @p infection + 40
+			#Main(I2) @a wool 5 ~ 0 ~ @p immunity - 10
+			#Main(SR) @a wool 5 ~ 0 ~ @p infection - 5
+			#Main(SR2) @a wool 5 ~ 0 ~ @p infection - 5
+			#Main(SR2) @a wool 5 ~ 0 ~ @p immunity + 5
+		CONEND
+	
+	
+:blood CLOCK 16 2 0
+	testfor #Main(B)
+	CONSTART
+		#Main(B) @a[damage>=1] @a[r=5] infection + 10
+		#Main(SR) @a[damage>=1] @a[r=5] infection - 4
+		#Main(SR2) @a[damage>=1] @a[r=5] infection - 4
+		CONEND
+	
+	testfor #Main(B2)
+	CONSTART
+		#Main(B2) @a[damage>=1] @a[r=10] infection + 20 
+		#Main(B2) @a[damage>=1] immunity - 5
+		#Main(SR) @a[damage>=1] @a[r=5] infection - 4
+		#Main(SR2) @a[damage>=1] @a[r=5] infection - 4
+		#Main(SR2) @a[damage>=1] @a[r=5] immunity + 2
+	CONEND
+	
+	
+:air DELAY 16 2 0
+    summon A 20
+		testfor #Main(A)
+		CONSTART
+			#Main(A) @a infection + 3
+			#Main(BR) @a infection - 1
+			#Main(BR2) @a infection - 1
+		CONEND
+		
+		testfor #Main(A2)
+		CONSTART
+			#Main(A2) @a infection + 6
+			#Main(A2) @a immunity - 3
+			#Main(BR) @a infection - 1
+			#Main(BR2) @a infection - 1
+			#Main(BR2) @a immunity + 1
+		CONEND
+		
+		
 :ConvertSuperInfector DELAY 16 2 0
 	summon ConvertSuperInfector 20
-	
-	@a infection -= immunity
-	@a[infection>0] scoreboard players tag @a[tag=!Infector] add Infector
-	@a[infection<=0] scoreboard players tag @a[tag=Infector] remove Infector
-	@a infection += immunity
+		@a infection -= immunity
+		@a[infection>0] scoreboard players tag @a[tag=!Infector] add Infector
+		@a[infection<=0] scoreboard players tag @a[tag=Infector] remove Infector
+		@a infection += immunity
+		
 
 :InfectorInfectionOption DELAY 16 2 0
 	summon InfectorInfectionOption 20
-	
-	#Main(ID) @a[Infector] immunity - 10
-	#Main(IF) @a[Infector] infection + 10
-	#Main(IN) @a[Infector] @a[r=5] infection + 10
-
-	//# ImmunityMaintenance and ProduceAntibody
+		#Main(ID) @a[Infector] immunity - 10
+		#Main(IF) @a[Infector] infection + 10
+		#Main(IN) @a[Infector] @a[r=5] infection + 5
+		
+		
 :IM-PA DELAY 16 2 0
 	summon I 20
 
 	@e[type=ArmorStand,IM] @a immunity + 1
 	@e[type=ArmorStand,PA] @a infection - 2
-
-:SpawnControler CLOCK 16 2 0
-
-    testfor @a[!FirstTime]
-    CONSTART
-        tp @a[!FirstTime] @e[name=Spawn,type=ArmorStand]
-        @a[!FirstTime] rejoin = 1
-        scoreboard players tag @a[!FirstTime] add FirstTime
-    CONEND
-    testfor @a[rejoin>0]
-    CONSTART
-        @a[rejoin>0] tellraw @a ["",{"selector":"@p","color":"red","bold":true},{"text":" join the game","color":"dark_gray","bold":true}]
-        @a[rejoin>0] title @p subtitle ["",{"selector":"@p","color":"red"}]
-        @a[rejoin>0] title @p title ["",{"text":"Welcome","color":"gold","bold":true}]
-        @a[rejoin>0] rejoin = 0
-    CONEND
