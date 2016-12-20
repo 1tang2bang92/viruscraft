@@ -1,62 +1,50 @@
 DEFINE #Item {SelectedItem:{id:"minecraft:carrot_on_a_stick",Damage:|0|s,tag:{display:{Name:"|1|"}}}}
 DEFINE #Main @e[type=armor_stand,name=main,|0|]
 
-:carrot1 CLOCK 16 16 0
-
-	@a[carrot>=1] water = 0  #Item(1;Unknown water)
-	#Main(W) @a infection + 300 #Item(1;Unknown water)
-	
+:liquid CLOCK 16 16 0
+	@a[carrot>=1] liquid = 0  #Item(1;Unknown water)
+	#Main(W) @a[carrot>=1] infection + 300 #Item(1;Unknown water)
 	CONSTART
 		#Main(BR) @a infection - 100 #Item(1;Unknown water)
 		#Main(BR2) @a infection - 100 #Item(1;Unknown water)
 	CONEND
-	
-	#Main(W2) @a infection + 600 #Item(1;Unknown water)
-	#Main(W2) @a immunity - 300 #Item(1;Unknown water)
-	
+	#Main(W2) @a[carrot>=1] infection + 600 #Item(1;Unknown water)
 	CONSTART
-		#Main(BR2) @a infection - 200 #Item(1;Unknown water)
-		#Main(BR2) @a immunity + 100 #Item(1;Unknown water)
+		#Main(W2) @a[carrot>=1] immunity - 300 #Item(1;Unknown water)
+		#Main(BR) @a[carrot>=1] infection - 100 #Item(1;Unknown water)
+		#Main(BR2) @a[carrot>=1] infection - 200 #Item(1;Unknown water)
+		#Main(BR2) @a[carrot>=1] immunity + 100 #Item(1;Unknown water)
 	CONEND
-	
 	scoreboard players tag add @a[carrot>=1] Unknown #Main(1;Unknown water)
-	
 	CONSTART
 		@a[Unknown] clear @p minecraftcarrot_on_a_stick 1 1 #Item(1;Unknown water)
 	CONEND
-	
 	scoreboard players tag add @a[carrot>=1] Purified #Item(1;Purified water)
-	
 	CONSTART
-		@a[purified] clear @p minecraftcarrot_on_a_stick 1 1 #Item(1;purified water)
+		@a[purified] clear @p minecraftcarrot_on_a_stick 1 1 #Item(1;Purified water)
 	CONEND
-	
 	@a[carrot>=1] carrot = 0
-	
-	
-:carrot2 CLOCK 16 2 0
 
+
+:influVAC CLOCK 16 2 0
     testfor @a[carrot>=1] #Item(2;InfluVac)
-	
-    CONSTART
-
-        //# 면역 > 5000
-        @a[immunity>5000,carrot>=1] immunity + 3000 #Item(2;InfluVac)
-
-        //# else
-        @a[immunity<=5000,carrot>=1] infection + 200 #Item(2;InfluVac)
-    CONEND
-	
+    //# 면역 > 5000
+    @a[immunity>5000,carrot>=1] immunity + 3000 #Item(2;InfluVac)
+	CONSTART
+		clear @a[carrot>=1] minecraft:carrot_on_a_stick #Item(2;influVAC)
+	CONEND
+    //# else
+	@a[immunity<=5000,carrot>=1] infection + 200 #Item(2;InfluVac)
+	CONSTART
+		clear @a[carrot>=1] minecraft:carrot_on_a_stick #Item(2;influVAC)
+	CONEND
     @a[carrot>=1] carrot = 0
 
 
-:carrot3 CLOCK 16 16 0
-
+:DA-7218 CLOCK 16 16 0
 	@a[carrot>=1] infection - 8000 #Item(3;DA-7218)
-	
 	CONSTART
 		@a[carrot>=1] immunity + 250 #Item(3;DA-7218)
 		clear @a[carrot>=1] minecraft:carrot_on_a_stick #Item(3;DA-7218)
 	CONEND
-	
-	@a[carrot>=1] carrot = 0
+@a[carrot>=1] carrot = 0
