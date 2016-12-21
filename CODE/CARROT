@@ -1,51 +1,58 @@
-DEFINE #Item {SelectedItem:{id:"minecraft:carrot_on_a_stick",Damage:|0|s,tag:{display:{Name:"|1|"}}}}
-DEFINE #Main @e[type=armor_stand,name=main,|0|]
-
-:liquid CLOCK 16 16 0
-	@a[liquid<=16000] liquid + 1
-	@a[carrot>=1] liquid = 0  #Item(1;Unknown water)
-	#Main(W) @a[carrot>=1] infection + 300 #Item(1;Unknown water)
-	CONSTART
-		#Main(BR) @a infection - 100 #Item(1;Unknown water)
-		#Main(BR2) @a infection - 100 #Item(1;Unknown water)
-	CONEND
-	#Main(W2) @a[carrot>=1] infection + 600 #Item(1;Unknown water)
-	CONSTART
-		#Main(W2) @a[carrot>=1] immunity - 300 #Item(1;Unknown water)
-		#Main(BR) @a[carrot>=1] infection - 100 #Item(1;Unknown water)
-		#Main(BR2) @a[carrot>=1] infection - 200 #Item(1;Unknown water)
-		#Main(BR2) @a[carrot>=1] immunity + 100 #Item(1;Unknown water)
-	CONEND
-	scoreboard players tag @a[carrot>=1] add Unknown #Item(1;Unknown water)
-	CONSTART
-		@a[Unknown] clear @p minecraft:carrot_on_a_stick 1 1 #Item(1;Unknown water)
-	CONEND
-	scoreboard players tag @a[carrot>=1] add Purified #Item(1;Purified water)
-	CONSTART
-		@a[purified] clear @p minecraft:carrot_on_a_stick 1 1 #Item(1;Purified water)
-	CONEND
-	@a[carrot>=1] carrot = 0
-
-
-:influVAC CLOCK 16 2 0
-    testfor @a[carrot>=1] #Item(2;InfluVac)
-    //# 면역 > 5000
-    @a[immunity>5000,carrot>=1] immunity + 3000 #Item(2;InfluVac)
-	CONSTART
-		clear @a[carrot>=1] minecraft:carrot_on_a_stick #Item(2;influVAC)
-	CONEND
-    //# else
-	@a[immunity<=5000,carrot>=1] infection + 200 #Item(2;InfluVac)
-	CONSTART
-		clear @a[carrot>=1] minecraft:carrot_on_a_stick #Item(2;influVAC)
-	CONEND
-    @a[carrot>=1] carrot = 0
-
-
-:DA-7218 CLOCK 16 16 0
-	@a[carrot>=1] infection - 8000 #Item(3;DA-7218)
-	CONSTART
-		@a[carrot>=1] immunity + 250 #Item(3;DA-7218)
-		clear @a[carrot>=1] minecraft:carrot_on_a_stick #Item(3;DA-7218)
-	CONEND
-@a[carrot>=1] carrot = 0
+:carrot  CLOCK 16 16 0
+	testfor @a[carrot>=1]
+	//# 더블컨디셔널
+		@a[carrot>=1] itemcode = 1  #Item(1;Unknown water) //# 미확인 물
+		@a[carrot>=1] itemcode = 2 #Item(1;Purified water) //# 깨끗한 물
+		@a[carrot>=1] itemcode = 3 #Item(2;InfluVac)  //# 백신
+		@a[carrot>=1] itemcode = 4 #Item(3;DA-7218)  //# 항생제
+		@a[carrot>=1] carrot 0
+	
+	
+:itemcode1 CLOCK 16 16 0 //# 미확인 물
+	testfor @a[itemcode=1]
+	//# 더블컨디셔널
+	1
+	1
+		@a[itemcode=1] liquid = 0
+		#Main(W) @a[itemcode=1] infection + 300
+		CONSTART
+			#Main(BR) @a[itemcode=1] infection - 100
+			#Main(BR2) @a[itemcode=1] infection - 100
+		CONEND
+		#Main(W2) @a[itemcode=1] infection + 600
+		CONSTART
+			#Main(W2) @a[itemcode=1] immunity - 300
+			#Main(BR) @a[itemcode=1] infection - 100
+			#Main(BR2) @a[itemcode=1] infection - 200
+			#Main(BR2) @a[itemcode=1] immunity + 100
+		CONEND
+		clear @a[itemcode=1] minecraft:carrot_on_a_stick 1 1 #Item(1;Unknown water)
+		
+		
+:itemcode2 CLOCK 16 16 0 //# 깨끗한 물
+	testfor @a[itemcode=2]
+	//# 더블컨디셔널
+	2
+	2
+	@a[itemcode=2] liquid = 0
+	clear @a[itemcode=2] minecraft:carrot_on_a_stick 1 1 #Item(1;Purified water)
+		
+		
+:itemcode3 CLOCK 16 16 0 //# 백신
+	testfor @a[itemcode=3]
+	//#더블컨디셔널
+	3
+	3
+	@a[itemcode=3,immunity>5000] immunity + 3000
+	@a[itemcode=3,immunity<=5000] infection + 200
+	clear @a[itemcode=3]  minecraft:carrot_on_a_stick #Item(2;influVAC)
+	
+	
+:itemcode4 CLOCK 16 16 0 //# 항생제
+	testfor @a[itemcode=4]
+	//#더블컨디셔널
+	4
+	4
+	@a[itemcode=4] infection - 8000
+	@a[itemcode=4] immunity + 250
+	clear @a[itemcode=4] minecraft:carrot_on_a_stick #Item(3;DA-7218)
