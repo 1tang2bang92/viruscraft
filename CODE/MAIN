@@ -1,12 +1,12 @@
 DEFINE #Main @e[type=armor_stand,name=main,|0|]
 
 :insect DELAY 16 2 0
-	summon I 20
+	summon insect 20
 		testfor #Main(I)
 		CONSTART
 			#Main(I) @a wool 5 ~ 0 ~ @p infection + 20
-			#Main(SR) @a wool 5 ~ 0 ~ @p  infection - 5
-			#Main(SR2) @a wool 5 ~ 0 ~ @p  infection - 5
+			#Main(SR) @a wool 5 ~ 0 ~ @p infection - 5
+			#Main(SR2) @a wool 5 ~ 0 ~ @p infection - 5
 		CONEND
 	
 		testfor #Main(I2)
@@ -30,15 +30,16 @@ DEFINE #Main @e[type=armor_stand,name=main,|0|]
 	testfor #Main(B2)
 	CONSTART
 		#Main(B2) @a[damage>=1] @a[r=10] infection + 20 
-		#Main(B2) @a[damage>=1] immunity - 5
+		#Main(B2) @a[damage>=1] @a[r=10] immunity - 5
 		#Main(SR) @a[damage>=1] @a[r=5] infection - 4
-		#Main(SR2) @a[damage>=1] @a[r=5] infection - 4
-		#Main(SR2) @a[damage>=1] @a[r=5] immunity + 2
+		#Main(SR2) @a[damage>=1] @a[r=10] infection - 4
+		#Main(SR2) @a[damage>=1] @a[r=10] immunity + 2
 	CONEND
+	@a[damage>=1] damage = 0
 	
 	
 :air DELAY 16 2 0
-    summon A 20
+    summon air 20
 		testfor #Main(A)
 		CONSTART
 			#Main(A) @a infection + 3
@@ -59,8 +60,8 @@ DEFINE #Main @e[type=armor_stand,name=main,|0|]
 :ConvertSuperInfector DELAY 16 2 0
 	summon ConvertSuperInfector 20
 		@a infection -= immunity
-		@a[infection>0] scoreboard players tag @a[tag=!Infector] add Infector
-		@a[infection<=0] scoreboard players tag @a[tag=Infector] remove Infector
+		@a[infection>0] scoreboard players tag @p[tag=!Infector] add Infector
+		@a[infection<=0] scoreboard players tag @p[tag=Infector] remove Infector
 		@a infection += immunity
 		
 
@@ -72,7 +73,6 @@ DEFINE #Main @e[type=armor_stand,name=main,|0|]
 		
 		
 :IM-PA DELAY 16 2 0
-	summon I 20
-
-	@e[type=ArmorStand,IM] @a immunity + 1
-	@e[type=ArmorStand,PA] @a infection - 2
+	summon IM-PA 20
+		@e[type=ArmorStand,IM] @a immunity + 1
+		@e[type=ArmorStand,PA] @a infection - 2
