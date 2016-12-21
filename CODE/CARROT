@@ -1,11 +1,13 @@
 :carrot  CLOCK 16 16 0
 	testfor @a[carrot>=1]
 	//# 더블컨디셔널
-		@a[carrot>=1] itemcode = 1  #Item(1;Unknown water) //# 미확인 물
-		@a[carrot>=1] itemcode = 2 #Item(1;Purified water) //# 깨끗한 물
-		@a[carrot>=1] itemcode = 3 #Item(2;InfluVac)  //# 백신
-		@a[carrot>=1] itemcode = 4 #Item(3;DA-7218)  //# 항생제
-		@a[carrot>=1] carrot 0
+	0
+	0
+	@a[carrot>=1] itemcode = 1  #Item(1;Unknown water) //# 미확인 물
+	@a[carrot>=1] itemcode = 2 #Item(1;Purified water) //# 깨끗한 물
+	@a[carrot>=1] itemcode = 3 #Item(2;InfluVac)  //# 백신
+	@a[carrot>=1] itemcode = 4 #Item(3;DA-7218)  //# 항생제
+	@a[carrot>=1] carrot 0
 	
 	
 :itemcode1 CLOCK 16 16 0 //# 미확인 물
@@ -13,20 +15,20 @@
 	//# 더블컨디셔널
 	1
 	1
-		@a[itemcode=1] liquid = 0
-		#Main(W) @a[itemcode=1] infection + 300
-		CONSTART
-			#Main(BR) @a[itemcode=1] infection - 100
-			#Main(BR2) @a[itemcode=1] infection - 100
-		CONEND
-		#Main(W2) @a[itemcode=1] infection + 600
-		CONSTART
-			#Main(W2) @a[itemcode=1] immunity - 300
-			#Main(BR) @a[itemcode=1] infection - 100
-			#Main(BR2) @a[itemcode=1] infection - 200
-			#Main(BR2) @a[itemcode=1] immunity + 100
-		CONEND
-		clear @a[itemcode=1] minecraft:carrot_on_a_stick 1 1 #Item(1;Unknown water)
+	@a[itemcode=1] liquid = 0
+	#Main(W) @a[itemcode=1] infection + 300
+	CONSTART
+		#Main(BR) @a[itemcode=1] infection - 100
+		#Main(BR2) @a[itemcode=1] infection - 100
+	CONEND
+	#Main(W2) @a[itemcode=1] infection + 600
+	CONSTART
+		#Main(W2) @a[itemcode=1] immunity - 300
+		#Main(BR) @a[itemcode=1] infection - 100
+		#Main(BR2) @a[itemcode=1] infection - 200
+		#Main(BR2) @a[itemcode=1] immunity + 100
+	CONEND
+	clear @a[itemcode=1] minecraft:carrot_on_a_stick 1 1 #Item(1;Unknown water)
 		
 		
 :itemcode2 CLOCK 16 16 0 //# 깨끗한 물
